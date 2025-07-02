@@ -1,0 +1,39 @@
+<!-- admin_panel.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel</title>
+</head>
+<body>
+<h2>Admin - Approve Companies</h2>
+<div id="companiesList"></div>
+
+<script>
+  let companies = JSON.parse(localStorage.getItem('companies') || '[]');
+
+  function renderCompanies() {
+    const div = document.getElementById('companiesList');
+    if (companies.length === 0) {
+      div.innerHTML = "<p>No pending companies.</p>";
+      return;
+    }
+
+    div.innerHTML = companies.map((c, i) => `
+        <div style="margin-bottom:10px;">
+          <strong>${c.name}</strong> (Reg No: ${c.regNo}) -
+          ${c.approved ? '<span style="color:green;">Approved</span>' : '<button onclick="approve(${i})">Approve</button>'}
+        </div>
+      `).join('');
+  }
+
+  function approve(index) {
+    companies[index].approved = true;
+    localStorage.setItem('companies', JSON.stringify(companies));
+    renderCompanies();
+  }
+
+  renderCompanies();
+</script>
+</body>
+</html>

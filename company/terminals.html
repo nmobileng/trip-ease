@@ -1,0 +1,112 @@
+<!-- terminals.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Terminals Management</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex bg-gray-100 min-h-screen">
+<!-- Sidebar -->
+<aside class="w-64 bg-blue-800 text-white p-6 space-y-6">
+  <div class="text-2xl font-bold">🚍 Trip-ease</div>
+  <nav class="space-y-4">
+    <a href="admin-dashboard.html" class="block hover:bg-blue-700 p-2 rounded">Dashboard</a>
+    <a href="trip-schedule.html" class="block hover:bg-blue-700 p-2 rounded">Trip / Schedule</a>
+    <a href="vehicle-control.html" class="block hover:bg-blue-700 p-2 rounded">Vehicle Control</a>
+    <a href="driver-management.html" class="block hover:bg-blue-700 p-2 rounded">Driver Management</a>
+    <a href="bookings.html" class="block hover:bg-blue-700 p-2 rounded">Bookings</a>
+    <a href="terminals.html" class="block hover:bg-blue-700 p-2 rounded">Terminals</a>
+    <a href="analytics.html" class="block hover:bg-blue-700 p-2 rounded">Report and Analytics</a>
+    <a href="/TripEazy-MVP/sign_in.html" class="block hover:bg-blue-700 p-2 rounded">Logout</a>
+  </nav>
+</aside>
+
+<!-- Main Content -->
+<main class="flex-1 p-6">
+  <h1 class="text-2xl font-bold mb-6">Terminal and Routes Management</h1>
+
+  <!-- Add Terminal Form -->
+  <div class="bg-white p-6 rounded shadow mb-6">
+    <h2 class="text-lg font-semibold mb-4">Add Terminal</h2>
+    <form class="grid grid-cols-2 gap-4">
+      <input type="text" placeholder="Terminal Name" class="p-2 border rounded">
+      <input type="text" placeholder="Location / Address" class="p-2 border rounded">
+      <input type="text" placeholder="Google Maps Link" class="p-2 border rounded">
+      <button class="col-span-2 bg-green-500 text-white px-4 py-2 rounded">Add Terminal</button>
+    </form>
+  </div>
+
+  <!-- Routes Section -->
+  <div class="bg-white p-6 rounded shadow mb-6">
+    <h2 class="text-lg font-semibold mb-4">Create Route</h2>
+    <form class="grid grid-cols-2 gap-4">
+      <select class="p-2 border rounded">
+        <option>Origin Terminal</option>
+        <option>Ikeja Terminal</option>
+        <option>Ajah Terminal</option>
+      </select>
+      <select class="p-2 border rounded">
+        <option>Destination Terminal</option>
+        <option>Yaba Terminal</option>
+        <option>Surulere Terminal</option>
+      </select>
+      <input type="text" placeholder="Stops (comma separated)" class="p-2 border rounded">
+      <input type="text" placeholder="Estimated Duration (e.g. 1h 30m)" class="p-2 border rounded">
+      <input type="number" placeholder="Price per KM" class="p-2 border rounded">
+      <input type="number" placeholder="Flat Rate" class="p-2 border rounded">
+      <button class="col-span-2 bg-blue-600 text-white px-4 py-2 rounded">Add Route</button>
+    </form>
+  </div>
+
+  <!-- Terminal List -->
+  <div class="bg-white p-6 rounded shadow mb-6">
+    <h2 class="text-lg font-semibold mb-4">Terminals List</h2>
+    <table class="w-full text-left border">
+      <thead>
+      <tr class="bg-gray-100">
+        <th class="p-2 border">Name</th>
+        <th class="p-2 border">Address</th>
+        <th class="p-2 border">Map Link</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="p-2 border">Ikeja Terminal</td>
+        <td class="p-2 border">12 Allen Avenue, Ikeja</td>
+        <td class="p-2 border text-blue-500"><a href="#">View Map</a></td>
+      </tr>
+      <tr>
+        <td class="p-2 border">Yaba Terminal</td>
+        <td class="p-2 border">5 Alagomeji Rd, Yaba</td>
+        <td class="p-2 border text-blue-500"><a href="#">View Map</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Route List -->
+  <div class="bg-white p-6 rounded shadow">
+    <h2 class="text-lg font-semibold mb-4">Routes List</h2>
+    <table class="w-full text-left border">
+      <thead>
+      <tr class="bg-gray-100">
+        <th class="p-2 border">From → To</th>
+        <th class="p-2 border">Stops</th>
+        <th class="p-2 border">Duration</th>
+        <th class="p-2 border">Pricing</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="p-2 border">Ikeja → Yaba</td>
+        <td class="p-2 border">Ojota, Maryland</td>
+        <td class="p-2 border">45 mins</td>
+        <td class="p-2 border">₦100/km or ₦1000 flat</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Trip-ease Sign In</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+<div class="bg-white p-8 rounded shadow-md w-full max-w-md">
+  <h2 class="text-2xl font-bold mb-6 text-center">Sign In</h2>
+  <form id="signinForm" class="space-y-4">
+    <input type="email" id="email" placeholder="Email" required class="w-full p-2 border rounded">
+    <input type="password" id="password" placeholder="Password" required class="w-full p-2 border rounded">
+    <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Sign In</button>
+  </form>
+  <p class="text-center text-sm text-gray-600 mt-4">Don’t have an account? <a href="#" class="text-blue-600">Register</a></p>
+</div>
+
+<script>
+  const accounts = {
+    "admin@tripease.com": "admin123",
+    "company@tripease.com": "company123",
+    "user@tripease.com": "user123"
+  };
+
+  document.getElementById('signinForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const email = document.getElementById('email').value.toLowerCase();
+    const password = document.getElementById('password').value;
+
+    if (!accounts[email]) {
+      alert("No account found for " + email);
+      return;
+    }
+
+    if (accounts[email] !== password) {
+      alert("Incorrect password for " + email);
+      return;
+    }
+
+    if (email.includes("admin")) {
+      window.location.href = "admin_panel.html";
+    } else if (email.includes("company")) {
+      window.location.href = "company/admin-dashboard.html";
+    } else {
+      window.location.href = "user/trip_planner.html";
+    }
+  });
+</script>
+</body>
+</html>

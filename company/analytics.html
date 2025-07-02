@@ -1,0 +1,175 @@
+<!-- analytics.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Reports & Analytics</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    canvas {
+      width: 100% !important;
+      height: 300px !important;
+    }
+  </style>
+</head>
+<body class="flex bg-gray-100 min-h-screen">
+<!-- Sidebar -->
+<aside class="w-64 bg-blue-800 text-white p-6 space-y-6">
+  <div class="text-2xl font-bold">🚍 Trip-ease</div>
+  <nav class="space-y-4">
+    <a href="admin-dashboard.html" class="block hover:bg-blue-700 p-2 rounded">Dashboard</a>
+    <a href="trip-schedule.html" class="block hover:bg-blue-700 p-2 rounded">Trip / Schedule</a>
+    <a href="vehicle-control.html" class="block hover:bg-blue-700 p-2 rounded">Vehicle Control</a>
+    <a href="driver-management.html" class="block hover:bg-blue-700 p-2 rounded">Driver Management</a>
+    <a href="bookings.html" class="block hover:bg-blue-700 p-2 rounded">Bookings</a>
+    <a href="terminals.html" class="block hover:bg-blue-700 p-2 rounded">Terminals</a>
+    <a href="analytics.html" class="block hover:bg-blue-700 p-2 rounded">Report and Analytics</a>
+    <a href="/TripEazy-MVP/sign_in.html" class="block hover:bg-blue-700 p-2 rounded">Logout</a>
+  </nav>
+</aside>
+
+<!-- Main Content -->
+<main class="flex-1 p-6">
+  <h1 class="text-2xl font-bold mb-6">Reports and Analytics</h1>
+
+  <!-- Filters -->
+  <div class="bg-white p-4 rounded shadow mb-6">
+    <h2 class="text-lg font-semibold mb-4">Select Timeframe</h2>
+    <div class="flex space-x-4">
+      <input type="date" class="p-2 border rounded">
+      <input type="date" class="p-2 border rounded">
+      <button class="bg-blue-600 text-white px-4 py-2 rounded">Generate</button>
+    </div>
+  </div>
+
+  <!-- Summary Cards -->
+  <div class="grid grid-cols-4 gap-4 mb-6">
+    <div class="bg-white p-4 rounded shadow">
+      <p class="text-gray-500">Total Trips</p>
+      <p class="text-2xl font-bold">782</p>
+    </div>
+    <div class="bg-white p-4 rounded shadow">
+      <p class="text-gray-500">Total Revenue</p>
+      <p class="text-2xl font-bold">₦12,350,000</p>
+    </div>
+    <div class="bg-white p-4 rounded shadow">
+      <p class="text-gray-500">Avg Fare/Trip</p>
+      <p class="text-2xl font-bold">₦15,800</p>
+    </div>
+    <div class="bg-white p-4 rounded shadow">
+      <p class="text-gray-500">Refunds</p>
+      <p class="text-2xl font-bold">₦250,000</p>
+    </div>
+  </div>
+
+  <!-- Charts -->
+  <div class="grid grid-cols-2 gap-4 mb-6">
+    <div class="bg-white p-6 rounded shadow">
+      <h2 class="text-lg font-semibold mb-2">Trip Count Over Time</h2>
+      <canvas id="tripChart"></canvas>
+    </div>
+    <div class="bg-white p-6 rounded shadow">
+      <h2 class="text-lg font-semibold mb-2">Revenue Over Time</h2>
+      <canvas id="revenueChart"></canvas>
+    </div>
+  </div>
+
+  <!-- Cancellations & Refunds -->
+  <div class="bg-white p-6 rounded shadow mb-6">
+    <h2 class="text-lg font-semibold mb-4">Cancellations</h2>
+    <ul class="text-sm list-disc list-inside">
+      <li>Trip #402: Customer cancelled due to reschedule.</li>
+      <li>Trip #385: Operator vehicle breakdown.</li>
+      <li>Trip #370: Low passenger count.</li>
+    </ul>
+  </div>
+
+  <!-- Trip Timings -->
+  <div class="bg-white p-6 rounded shadow">
+    <h2 class="text-lg font-semibold mb-4">Average Departure Times</h2>
+    <table class="w-full text-left border">
+      <thead class="bg-gray-100">
+      <tr>
+        <th class="p-2 border">Route</th>
+        <th class="p-2 border">Scheduled</th>
+        <th class="p-2 border">Actual</th>
+        <th class="p-2 border">Delay</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="p-2 border">Ikeja → Yaba</td>
+        <td class="p-2 border">08:00</td>
+        <td class="p-2 border">08:20</td>
+        <td class="p-2 border text-red-500">+20 mins</td>
+      </tr>
+      <tr>
+        <td class="p-2 border">Yaba → Ajah</td>
+        <td class="p-2 border">07:30</td>
+        <td class="p-2 border">07:35</td>
+        <td class="p-2 border text-green-600">+5 mins</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+
+<script>
+  const tripChart = new Chart(document.getElementById('tripChart').getContext('2d'), {
+    type: 'line',
+    data: {
+      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+      datasets: [{
+        label: 'Trips',
+        data: [120, 180, 230, 200, 260],
+        backgroundColor: 'rgba(59, 130, 246, 0.2)',
+        borderColor: 'rgba(59, 130, 246, 1)',
+        borderWidth: 2,
+        fill: true
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          suggestedMax: 300,
+          ticks: {
+            stepSize: 50
+          }
+        }
+      }
+    }
+  });
+
+  const revenueChart = new Chart(document.getElementById('revenueChart').getContext('2d'), {
+    type: 'bar',
+    data: {
+      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+      datasets: [{
+        label: 'Revenue (₦)',
+        data: [2400000, 3100000, 2800000, 3200000, 3500000],
+        backgroundColor: 'rgba(34, 197, 94, 0.6)',
+        borderColor: 'rgba(34, 197, 94, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          suggestedMax: 4000000,
+          ticks: {
+            stepSize: 500000
+          }
+        }
+      }
+    }
+  });
+</script>
+</body>
+</html>

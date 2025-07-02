@@ -1,0 +1,31 @@
+<!-- company_signup.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Company Signup</title>
+</head>
+<body>
+<h2>Transport Company Signup</h2>
+<form id="signupForm">
+  <label>Company Name: <input type="text" id="companyName" required></label><br>
+  <label>Reg No: <input type="text" id="regNo" required></label><br>
+  <button type="submit">Submit</button>
+</form>
+
+<script>
+  document.getElementById('signupForm').onsubmit = function(e) {
+    e.preventDefault();
+    const name = document.getElementById('companyName').value;
+    const regNo = document.getElementById('regNo').value;
+
+    let companies = JSON.parse(localStorage.getItem('companies') || '[]');
+    companies.push({ name, regNo, approved: false });
+    localStorage.setItem('companies', JSON.stringify(companies));
+
+    alert('Company submitted! Await admin approval.');
+    window.location.href = 'index.html';
+  };
+</script>
+</body>
+</html>

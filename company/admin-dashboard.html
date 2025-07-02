@@ -1,0 +1,141 @@
+<!-- admin_dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Trip-ease Admin Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    canvas {
+      width: 100% !important;
+      height: 300px !important;
+    }
+  </style>
+</head>
+<body class="flex bg-gray-100 min-h-screen">
+<!-- Sidebar -->
+<aside class="w-64 bg-blue-800 text-white p-6 space-y-6">
+  <div class="text-2xl font-bold">🚍 Trip-ease</div>
+  <nav class="space-y-4">
+    <a href="admin-dashboard.html" class="block hover:bg-blue-700 p-2 rounded">Dashboard</a>
+    <a href="trip-schedule.html" class="block hover:bg-blue-700 p-2 rounded">Trip / Schedule</a>
+    <a href="vehicle-control.html" class="block hover:bg-blue-700 p-2 rounded">Vehicle Control</a>
+    <a href="driver-management.html" class="block hover:bg-blue-700 p-2 rounded">Driver Management</a>
+    <a href="bookings.html" class="block hover:bg-blue-700 p-2 rounded">Bookings</a>
+    <a href="terminals.html" class="block hover:bg-blue-700 p-2 rounded">Terminals</a>
+    <a href="analytics.html" class="block hover:bg-blue-700 p-2 rounded">Report and Analytics</a>
+    <a href="/TripEazy-MVP/sign_in.html" class="block hover:bg-blue-700 p-2 rounded">Logout</a>
+  </nav>
+</aside>
+
+<!-- Main Content -->
+<main class="flex-1 p-6 overflow-y-auto">
+  <h1 class="text-3xl font-bold mb-6">Dashboard Overview</h1>
+
+  <!-- Summary Cards -->
+  <div class="grid grid-cols-3 gap-4 mb-6">
+    <div class="bg-white p-4 rounded shadow">
+      <p class="text-gray-500">Total Trips</p>
+      <p class="text-2xl font-bold">302</p>
+    </div>
+    <div class="bg-white p-4 rounded shadow">
+      <p class="text-gray-500">Total Bookings</p>
+      <p class="text-2xl font-bold">845</p>
+    </div>
+    <div class="bg-white p-4 rounded shadow">
+      <p class="text-gray-500">Active Vehicles</p>
+      <p class="text-2xl font-bold">78</p>
+    </div>
+  </div>
+
+  <!-- Charts -->
+  <div class="grid grid-cols-2 gap-4 mb-6">
+    <div class="bg-white p-4 rounded shadow">
+      <h2 class="text-lg font-semibold mb-2">Monthly Bookings</h2>
+      <div class="h-72">
+        <canvas id="bookingChart"></canvas>
+      </div>
+    </div>
+    <div class="bg-white p-4 rounded shadow">
+      <h2 class="text-lg font-semibold mb-2">Monthly Revenue</h2>
+      <div class="h-72">
+        <canvas id="revenueChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Map Placeholder -->
+  <div class="bg-white p-4 rounded shadow mb-6">
+    <h2 class="text-lg font-semibold mb-2">Active Routes Map</h2>
+    <div class="w-full h-64 bg-gray-200 flex items-center justify-center">[Map Placeholder]</div>
+  </div>
+
+  <!-- Notifications -->
+  <div class="bg-white p-4 rounded shadow">
+    <h2 class="text-lg font-semibold mb-2">Recent Alerts</h2>
+    <ul class="text-sm space-y-2">
+      <li>⚠️ Trip #342 is delayed due to traffic.</li>
+      <li>🔧 Vehicle #23 is due for maintenance.</li>
+      <li>📣 Terminal route updated: Ikeja - Surulere.</li>
+      <li>✅ Booking confirmed for user Jane Doe.</li>
+    </ul>
+  </div>
+</main>
+
+<script>
+  const bookingCtx = document.getElementById('bookingChart').getContext('2d');
+  const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+
+  new Chart(bookingCtx, {
+    type: 'line',
+    data: {
+      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+      datasets: [{
+        label: 'Bookings',
+        data: [150, 200, 250, 300, 400],
+        backgroundColor: 'rgba(59, 130, 246, 0.2)',
+        borderColor: 'rgba(59, 130, 246, 1)',
+        borderWidth: 2,
+        fill: true
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            stepSize: 50
+          }
+        }
+      }
+    }
+  });
+
+  new Chart(revenueCtx, {
+    type: 'bar',
+    data: {
+      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+      datasets: [{
+        label: 'Revenue (₦)',
+        data: [500000, 750000, 1000000, 850000, 1200000],
+        backgroundColor: 'rgba(34, 197, 94, 0.6)',
+        borderColor: 'rgba(34, 197, 94, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
+</body>
+</html>

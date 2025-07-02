@@ -1,0 +1,87 @@
+<!-- trip_schedule.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Trip & Schedule Management</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex bg-gray-100 min-h-screen">
+<!-- Sidebar -->
+<aside class="w-64 bg-blue-800 text-white p-6 space-y-6">
+  <div class="text-2xl font-bold">🚍 Trip-ease</div>
+  <nav class="space-y-4">
+    <a href="admin-dashboard.html" class="block hover:bg-blue-700 p-2 rounded">Dashboard</a>
+    <a href="trip-schedule.html" class="block hover:bg-blue-700 p-2 rounded">Trip / Schedule</a>
+    <a href="vehicle-control.html" class="block hover:bg-blue-700 p-2 rounded">Vehicle Control</a>
+    <a href="driver-management.html" class="block hover:bg-blue-700 p-2 rounded">Driver Management</a>
+    <a href="bookings.html" class="block hover:bg-blue-700 p-2 rounded">Bookings</a>
+    <a href="terminals.html" class="block hover:bg-blue-700 p-2 rounded">Terminals</a>
+    <a href="analytics.html" class="block hover:bg-blue-700 p-2 rounded">Report and Analytics</a>
+    <a href="/TripEazy-MVP/sign_in.html" class="block hover:bg-blue-700 p-2 rounded">Logout</a>
+  </nav>
+</aside>
+
+<!-- Main Content -->
+<main class="flex-1 p-6">
+  <h1 class="text-2xl font-bold mb-6">Trip & Schedule Management</h1>
+
+  <!-- Create Trip -->
+  <div class="bg-white p-6 rounded shadow mb-6">
+    <h2 class="text-lg font-semibold mb-4">Create New Trip</h2>
+    <form class="grid grid-cols-2 gap-4">
+      <input type="text" placeholder="From Terminal" class="p-2 border rounded">
+      <input type="text" placeholder="To Terminal" class="p-2 border rounded">
+      <input type="datetime-local" placeholder="Departure Time" class="p-2 border rounded">
+      <input type="number" placeholder="Price (₦)" class="p-2 border rounded">
+      <select class="p-2 border rounded">
+        <option>Select Vehicle</option>
+        <option>Bus #14</option>
+        <option>Van #8</option>
+      </select>
+      <select class="p-2 border rounded">
+        <option>Select Driver</option>
+        <option>John Doe</option>
+        <option>Jane Smith</option>
+      </select>
+      <button class="col-span-2 bg-green-500 text-white px-4 py-2 rounded">Create Trip</button>
+    </form>
+  </div>
+
+  <!-- Upcoming Trips Table -->
+  <div class="bg-white p-6 rounded shadow">
+    <h2 class="text-lg font-semibold mb-4">Upcoming Trips</h2>
+    <table class="w-full text-left border">
+      <thead>
+      <tr class="bg-gray-100">
+        <th class="p-2 border">Route</th>
+        <th class="p-2 border">Time</th>
+        <th class="p-2 border">Vehicle</th>
+        <th class="p-2 border">Driver</th>
+        <th class="p-2 border">Seats</th>
+        <th class="p-2 border">Status</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="p-2 border">Ikeja → Surulere</td>
+        <td class="p-2 border">2025-07-03 08:00</td>
+        <td class="p-2 border">Bus #14</td>
+        <td class="p-2 border">John Doe</td>
+        <td class="p-2 border">12/18</td>
+        <td class="p-2 border text-green-600 font-semibold">Scheduled</td>
+      </tr>
+      <tr>
+        <td class="p-2 border">Yaba → Lekki</td>
+        <td class="p-2 border">2025-07-03 10:30</td>
+        <td class="p-2 border">Van #8</td>
+        <td class="p-2 border">Jane Smith</td>
+        <td class="p-2 border">8/12</td>
+        <td class="p-2 border text-yellow-600 font-semibold">Departed</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+</body>
+</html>
